@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>QuantCloud.ai</title>
+    <link href="https://unpkg.com/tabulator-tables/dist/css/tabulator.min.css" rel="stylesheet">
+    <script type="text/javascript" src="https://unpkg.com/tabulator-tables/dist/js/tabulator.min.js"></script>
+</head>
+<body>
+    <h1>QuantCloud.ai</h1>
+    <h3>Justin's Path to Wealth</h3>
+    <div id="example-table"></div>
+    <script>
+
+        var tabledata = [
+            {id:1, name:"TSLA", progress:12, gender:"true", rating:1, col:"red", dob:"19/02/1984", car:1},
+        ];
+
+        var table = new Tabulator("#example-table", {
+            data:tabledata,           //load row data from array
+            layout:"fitColumns",      //fit columns to width of table
+            responsiveLayout:"hide",  //hide columns that dont fit on the table
+            tooltips:true,            //show tool tips on cells
+            addRowPos:"top",          //when adding a new row, add it to the top of the table
+            history:true,             //allow undo and redo actions on the table
+            pagination:"local",       //paginate the data
+            paginationSize:7,         //allow 7 rows per page of data
+            movableColumns:true,      //allow column order to be changed
+            resizableRows:true,       //allow row order to be changed
+            initialSort:[             //set the initial sort order of the data
+                {column:"name", dir:"asc"},
+            ],
+            columns:[                 //define the table columns
+                {title:"investment", field:"name", editor:"input"},
+                {title:"super rich progress", field:"progress", hozAlign:"left", formatter:"progress", editor:true},
+                {title:"too risky", field:"gender", width:95, editor:"select", editorParams:{values:["male", "female"]}},
+                {title:"rating", field:"rating", formatter:"star", hozAlign:"center", width:100, editor:true},
+                {title:"concensu", field:"car", width:90,  hozAlign:"center", formatter:"tickCross", sorter:"boolean", editor:true},
+            ],
+        });
+    </script>
+</body>
+</html>
